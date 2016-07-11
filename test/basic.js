@@ -6,7 +6,7 @@ const fs = require('fs');
 const proxyConfig = require('../lib/index');
 
 describe("proxy-config", function () {
-    let TEST_CONFIG = "./test/helpers/test-config.json";
+    let TEST_CONFIG = "./test/test-config.json";
 
     beforeEach(function () {
         // we create this before the tests
