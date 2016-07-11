@@ -1,0 +1,18 @@
+{
+  "name": "proxy-config",
+  "version": "0.1.0",
+  "description": "use es6 proxies to read and write config files",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "config",
+    "proxy"
+  ],
+  "author": "Ben Greenier",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^2.5.3"
+  }
+}
