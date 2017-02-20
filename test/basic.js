@@ -3,6 +3,7 @@
 
 const assert = require('assert');
 const fs = require('fs');
+const path = require('path');
 const proxyConfig = require('../lib/index');
 
 describe("proxy-config", function () {
@@ -21,7 +22,7 @@ describe("proxy-config", function () {
     afterEach(function () {
         // we kill this after the tests
         try {
-        fs.unlinkSync(TEST_CONFIG);
+            fs.unlinkSync(TEST_CONFIG);
         } catch (ex) {
             // we swallow this since it's nbd if the file is already gone
         }
@@ -61,8 +62,23 @@ describe("proxy-config", function () {
 
         obj["kittens"] = "so cute";
 
-        var json = JSON.parse(fs.readFileSync(TEST_CONFIG).toString());
+        let json = JSON.parse(fs.readFileSync(TEST_CONFIG).toString());
 
         assert.equal(json["kittens"], "so cute");
+    });
+
+    it("should write (and create dirs)", function () {
+        let configPath = "./test/subdir/test-config.json";
+
+        let obj = proxyConfig(configPath);
+
+        obj["kittens"] = "so cute";
+
+        let json = JSON.parse(fs.readFileSync(configPath).toString());
+
+        assert.equal(json["kittens"], "so cute");
+
+        fs.unlinkSync(configPath);
+        fs.rmdirSync(path.dirname(configPath));
     });
 });
